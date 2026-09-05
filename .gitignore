@@ -1,1 +1,8 @@
 node_modules
+dist/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+posture_ai.db
+.env
