@@ -1,13 +1,30 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { login } from '../lib/api'
+
 import Logo from '../components/Logo'
 import backPainImg from '../assets/Back-Pain.jpg'
 
 export default function Login() {
   const navigate = useNavigate()
+  const [email, setEmail] = useState('carol@example.com')
+  const [password, setPassword] = useState('password123')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  function handleLogin(e: React.FormEvent) {
+  async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
-    navigate('/dashboard')
+    setError('')
+    setLoading(true)
+    try {
+      await login(email, password)
+      navigate('/dashboard')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Invalid email or password.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -26,7 +43,8 @@ export default function Login() {
               <span className="text-sm font-medium text-ink-soft">Email</span>
               <input
                 type="email"
-                defaultValue="carol@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="rounded-xl border border-line bg-canvas px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-violet/40 focus:bg-paper"
               />
             </label>
@@ -34,15 +52,22 @@ export default function Login() {
               <span className="text-sm font-medium text-ink-soft">Password</span>
               <input
                 type="password"
-                defaultValue="password123"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="rounded-xl border border-line bg-canvas px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-violet/40 focus:bg-paper"
               />
             </label>
+
+            {error && (
+              <p className="text-sm text-red-500 -mt-1">{error}</p>
+            )}
+
             <button
               type="submit"
-              className="mt-2 rounded-xl bg-violet text-white font-semibold py-3 text-sm shadow-[0_8px_20px_rgba(109,93,251,0.35)] hover:bg-violet-deep transition-colors"
+              disabled={loading}
+              className="mt-2 rounded-xl bg-violet text-white font-semibold py-3 text-sm shadow-[0_8px_20px_rgba(109,93,251,0.35)] hover:bg-violet-deep transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Sign in
+              {loading ? 'Signing in…' : 'Sign in'}
             </button>
           </form>
           <p className="text-xs text-ink-soft mt-6">Forgot your password? .</p>
@@ -50,10 +75,10 @@ export default function Login() {
 
         <div className="hidden md:flex flex-col gap-5 items-center justify-center bg-canvas p-10">
           <img
-  src={backPainImg}
-  alt="Illustration highlighting the lower spine, where back pain is felt"
-  className="w-full aspect-[4/5] object-cover rounded-2xl"
-/>
+            src={backPainImg}
+            alt="Illustration highlighting the lower spine, where back pain is felt"
+            className="w-full aspect-[4/5] object-cover rounded-2xl"
+          />
           <p className="text-sm text-ink-soft text-center max-w-[260px]">
             Understand your movement, not just your pain.
           </p>
