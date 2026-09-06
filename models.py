@@ -30,7 +30,8 @@ class Assessment(Base):
     occupation_type = Column(String, nullable=False)
 
     # Filled in later by posture analysis + recommendation steps
-    image_path = Column(String, nullable=True)
+    front_image_path = Column(String, nullable=True)
+    side_image_path = Column(String, nullable=True)
     posture_score = Column(Float, nullable=True)
     posture_notes = Column(String, nullable=True)
     recommendation = Column(String, nullable=True)
