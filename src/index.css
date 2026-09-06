@@ -5,13 +5,21 @@
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-ink: #23213a;
-  --color-ink-soft: #6b6b85;
-  --color-mist: #eef1fb;
-  --color-lav: #f3e8ff;
-  --color-sky: #e3e8fa;
+  /* Text */
+  --color-ink: #201c33;
+  --color-ink-soft: #6f6b85;
+
+  /* Surfaces — white layout, no gradients */
+  --color-paper: #ffffff;
+  --color-canvas: #f7f6fb;
+  --color-line: #e9e6f4;
+
+  /* Purple, used for buttons and active states only */
   --color-violet: #6d5dfb;
   --color-violet-deep: #4c3fd7;
+  --color-violet-tint: #efeafe;
+
+  /* Status */
   --color-mint: #35c4a0;
   --color-amber: #f2a341;
   --color-coral: #f3746b;
@@ -24,43 +32,30 @@ html, body, #root {
 body {
   font-family: var(--font-body);
   color: var(--color-ink);
-  background:
-    radial-gradient(1100px 620px at 8% -6%, #eaf0ff 0%, transparent 60%),
-    radial-gradient(900px 560px at 100% 0%, #f5ecff 0%, transparent 55%),
-    linear-gradient(180deg, #eef1fb 0%, #eae7fb 100%);
-  background-attachment: fixed;
+  background: var(--color-paper);
 }
 
 h1, h2, h3, .display {
   font-family: var(--font-display);
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 8px 32px rgba(76, 63, 130, 0.10);
-}
-
-.glass-deep {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-}
-
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-thumb { background: rgba(109, 93, 251, 0.25); border-radius: 8px; }
 
 @keyframes breathe {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.04); opacity: 1; }
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.05); opacity: 1; }
 }
 .animate-breathe { animation: breathe 3.2s ease-in-out infinite; }
 
-@keyframes float-y {
+@keyframes drift-y {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-6px); }
 }
-.animate-float { animation: float-y 5s ease-in-out infinite; }
+.animate-drift { animation: drift-y 6s ease-in-out infinite; }
+
+@keyframes sweep {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(220%); }
+}
+.animate-sweep { animation: sweep 1.8s ease-in-out infinite; }

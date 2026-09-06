@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GlassCard } from '../components/GlassCard'
+import { Card } from '../components/Card'
 import { AssessmentProgress } from '../components/Layout'
 import { symptomChips } from '../data/mock'
 
@@ -22,7 +22,7 @@ export default function NewAssessment() {
         This narrows down what the image analysis should focus on — you don't have to get it perfectly right.
       </p>
 
-      <GlassCard className="p-7">
+      <Card className="p-7">
         <p className="text-sm font-semibold mb-3">Where and how does it show up?</p>
         <div className="flex flex-wrap gap-2 mb-8">
           {symptomChips.map((chip) => {
@@ -34,7 +34,7 @@ export default function NewAssessment() {
                 className={`rounded-full px-4 py-2 text-sm font-medium border transition-colors ${
                   active
                     ? 'bg-violet text-white border-violet'
-                    : 'bg-white/60 text-ink-soft border-white/80 hover:bg-white/90'
+                    : 'bg-canvas text-ink-soft border-line hover:bg-violet-tint'
                 }`}
               >
                 {chip}
@@ -66,7 +66,7 @@ export default function NewAssessment() {
           onChange={(e) => setNotes(e.target.value)}
           placeholder="e.g. it's worse after long shifts at my desk, started about 2 weeks ago..."
           rows={4}
-          className="w-full rounded-xl border border-white/80 bg-white/70 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-violet/40 resize-none"
+          className="w-full rounded-xl border border-line bg-canvas px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-violet/40 focus:bg-paper resize-none"
         />
 
         <div className="flex justify-end mt-8">
@@ -77,7 +77,7 @@ export default function NewAssessment() {
             Continue to photo
           </button>
         </div>
-      </GlassCard>
+      </Card>
     </div>
   )
 }

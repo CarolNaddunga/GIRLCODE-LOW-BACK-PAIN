@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { GlassCard } from '../components/GlassCard'
+import { Card } from '../components/Card'
 import { AssessmentProgress } from '../components/Layout'
 import { analyzeImage } from '../lib/pose'
 
@@ -48,16 +48,11 @@ export default function Analyzing() {
   return (
     <div className="max-w-[720px]">
       <AssessmentProgress step={2} />
-      <GlassCard className="p-10 flex flex-col items-center text-center">
-        <div className="relative w-40 h-40 mb-8 flex items-center justify-center">
-          <div className="absolute inset-0 rounded-full bg-violet/10 animate-breathe" />
-          <div className="absolute inset-3 rounded-full bg-violet/15 animate-breathe" style={{ animationDelay: '0.4s' }} />
-          <svg width="70" height="90" viewBox="0 0 70 90" fill="none" className="relative">
-            <ellipse cx="35" cy="14" rx="12" ry="13" fill="#6D5DFB" />
-            <rect x="20" y="28" width="30" height="42" rx="12" fill="#6D5DFB" opacity="0.85" />
-            <rect x="10" y="32" width="10" height="34" rx="5" fill="#6D5DFB" opacity="0.7" />
-            <rect x="50" y="32" width="10" height="34" rx="5" fill="#6D5DFB" opacity="0.7" />
-          </svg>
+      <Card className="p-10 flex flex-col items-center text-center">
+        <div className="relative w-28 h-36 mb-8 flex items-center justify-center overflow-hidden rounded-2xl border border-line bg-canvas">
+          <div className="absolute inset-x-6 top-3 bottom-3 border-l border-r border-dashed border-violet/25" />
+          <div className="absolute left-0 right-0 h-0.5 bg-violet/70 shadow-[0_0_10px_rgba(109,93,251,0.6)] animate-sweep" />
+          <span className="text-[11px] font-medium text-ink-soft">Reading posture</span>
         </div>
         <h1 className="display text-xl font-semibold mb-2">Analyzing your movement</h1>
         <p className="text-sm text-ink-soft mb-8">This takes a few seconds — all done on your device.</p>
@@ -67,7 +62,7 @@ export default function Analyzing() {
             <div key={s} className="flex items-center gap-3">
               <div
                 className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] font-bold ${
-                  i < stepIndex ? 'bg-mint text-white' : i === stepIndex ? 'bg-violet text-white' : 'bg-white/60 text-ink-soft'
+                  i < stepIndex ? 'bg-mint text-white' : i === stepIndex ? 'bg-violet text-white' : 'bg-canvas text-ink-soft border border-line'
                 }`}
               >
                 {i < stepIndex ? '✓' : i + 1}
@@ -76,7 +71,7 @@ export default function Analyzing() {
             </div>
           ))}
         </div>
-      </GlassCard>
+      </Card>
     </div>
   )
 }
