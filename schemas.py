@@ -41,7 +41,8 @@ class AssessmentOut(BaseModel):
     sitting_hours_per_day: float
     exercise_frequency: str
     occupation_type: str
-    image_path: Optional[str] = None
+    front_image_path: Optional[str] = None
+    side_image_path: Optional[str] = None
     posture_score: Optional[float] = None
     posture_notes: Optional[str] = None
     recommendation: Optional[str] = None

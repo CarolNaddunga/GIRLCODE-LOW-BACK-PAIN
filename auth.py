@@ -9,7 +9,8 @@ from sqlalchemy.orm import Session
 from database import get_db
 
 # In a real deployment, move this to an environment variable — never commit it.
-SECRET_KEY = "change-this-to-a-long-random-string"
+import os
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-fallback-change-me")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 1 day
 
