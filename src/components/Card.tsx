@@ -1,19 +1,13 @@
 import type { ReactNode } from 'react'
 
-export function GlassCard({
+export function Card({
   children,
   className = '',
-  deep = false,
 }: {
   children: ReactNode
   className?: string
-  deep?: boolean
 }) {
-  return (
-    <div className={`${deep ? 'glass-deep' : 'glass'} rounded-3xl ${className}`}>
-      {children}
-    </div>
-  )
+  return <div className={`bg-paper border border-line rounded-2xl ${className}`}>{children}</div>
 }
 
 const statusStyle: Record<string, string> = {

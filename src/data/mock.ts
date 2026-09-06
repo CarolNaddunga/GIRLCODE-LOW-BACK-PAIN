@@ -38,6 +38,11 @@ export const symptomChips = [
   'Lower back', 'Upper back', 'Left side', 'Right side', 'Radiates to leg',
   'Worse sitting', 'Worse standing', 'Worse bending', 'Morning stiffness', 'Recent lifting',
 ]
+export const exerciseImages: Record<string, string> = {
+  'Cat-Cow Stretch': '/images/exercises/cat-cow.png',
+  'Knee to Chest': '/images/exercises/knee-to-chest.png',
+  'Pelvic Tilt': '/images/exercises/pelvic-tilt.png',
+}
 
 export const recommendations = [
   {

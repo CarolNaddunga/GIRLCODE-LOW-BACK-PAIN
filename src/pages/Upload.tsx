@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UploadCloud, Image as ImageIcon } from 'lucide-react'
-import { GlassCard } from '../components/GlassCard'
+import { Card } from '../components/Card'
 import { AssessmentProgress } from '../components/Layout'
 
 export default function Upload() {
@@ -27,7 +27,7 @@ export default function Upload() {
         A side-on, standing photo works best — we only use it to measure posture landmarks, nothing is stored beyond this session.
       </p>
 
-      <GlassCard className="p-7">
+      <Card className="p-7">
         <input
           ref={inputRef}
           type="file"
@@ -39,7 +39,7 @@ export default function Upload() {
         {!preview ? (
           <button
             onClick={() => inputRef.current?.click()}
-            className="w-full rounded-2xl border-2 border-dashed border-violet/30 bg-white/40 py-16 flex flex-col items-center gap-3 hover:bg-white/60 transition-colors"
+            className="w-full rounded-2xl border-2 border-dashed border-violet/30 bg-canvas py-16 flex flex-col items-center gap-3 hover:bg-violet-tint transition-colors"
           >
             <div className="w-14 h-14 rounded-full bg-violet/10 flex items-center justify-center">
               <UploadCloud size={24} className="text-violet-deep" />
@@ -65,7 +65,7 @@ export default function Upload() {
             Analyze photo
           </button>
         </div>
-      </GlassCard>
+      </Card>
     </div>
   )
 }

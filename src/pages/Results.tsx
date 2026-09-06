@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import { GlassCard, StatusPill } from '../components/GlassCard'
+import { Card, StatusPill } from '../components/Card'
 import RingGauge from '../components/RingGauge'
 import { AssessmentProgress } from '../components/Layout'
 
@@ -30,7 +30,7 @@ export default function Results() {
       <p className="text-ink-soft text-sm mb-8">Measured from your photo and combined with what you told us.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
-        <GlassCard className="p-6 flex flex-col items-center text-center">
+        <Card className="p-6 flex flex-col items-center text-center">
           <RingGauge
             value={Math.min(100, readings.trunkAngleDeg * 5)}
             label={`${readings.trunkAngleDeg}°`}
@@ -38,9 +38,9 @@ export default function Results() {
             color={trunkStatus === 'good' ? 'var(--color-mint)' : trunkStatus === 'mild' ? 'var(--color-amber)' : 'var(--color-coral)'}
           />
           <div className="mt-3"><StatusPill status={trunkStatus}>{trunkStatus === 'good' ? 'Good' : trunkStatus === 'mild' ? 'Mild lean' : 'Notable lean'}</StatusPill></div>
-        </GlassCard>
+        </Card>
 
-        <GlassCard className="p-6 flex flex-col items-center text-center">
+        <Card className="p-6 flex flex-col items-center text-center">
           <RingGauge
             value={readings.hipAlignmentPct}
             label={`${readings.hipAlignmentPct}%`}
@@ -48,9 +48,9 @@ export default function Results() {
             color={hipStatus === 'good' ? 'var(--color-mint)' : hipStatus === 'mild' ? 'var(--color-amber)' : 'var(--color-coral)'}
           />
           <div className="mt-3"><StatusPill status={hipStatus}>{hipStatus === 'good' ? 'Good' : hipStatus === 'mild' ? 'Mild' : 'Watch'}</StatusPill></div>
-        </GlassCard>
+        </Card>
 
-        <GlassCard className="p-6 flex flex-col items-center text-center">
+        <Card className="p-6 flex flex-col items-center text-center">
           <RingGauge
             value={readings.symmetryPct}
             label={`${readings.symmetryPct}%`}
@@ -58,10 +58,10 @@ export default function Results() {
             color={symStatus === 'good' ? 'var(--color-mint)' : symStatus === 'mild' ? 'var(--color-amber)' : 'var(--color-coral)'}
           />
           <div className="mt-3"><StatusPill status={symStatus}>{symStatus === 'good' ? 'Good' : symStatus === 'mild' ? 'Mild' : 'Watch'}</StatusPill></div>
-        </GlassCard>
+        </Card>
       </div>
 
-      <GlassCard className="p-7">
+      <Card className="p-7">
         <h3 className="font-semibold text-sm mb-3">What this suggests</h3>
         <p className="text-sm text-ink-soft leading-relaxed">
           Your trunk shows a {trunkStatus === 'good' ? 'minimal' : trunkStatus === 'mild' ? 'mild' : 'noticeable'} forward
@@ -77,7 +77,7 @@ export default function Results() {
             See my recommendations
           </button>
         </div>
-      </GlassCard>
+      </Card>
     </div>
   )
 }

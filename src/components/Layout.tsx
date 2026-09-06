@@ -18,7 +18,7 @@ export function AssessmentProgress({ step }: { step: number }) {
       {steps.map((s, i) => (
         <div key={s} className="flex items-center gap-2 flex-1">
           <div className="flex flex-col gap-1.5 w-full">
-            <div className="h-1.5 rounded-full overflow-hidden bg-[rgba(109,93,251,0.12)]">
+            <div className="h-1.5 rounded-full overflow-hidden bg-canvas">
               <div
                 className="h-full rounded-full bg-violet transition-all duration-700"
                 style={{ width: i <= step ? '100%' : '0%' }}

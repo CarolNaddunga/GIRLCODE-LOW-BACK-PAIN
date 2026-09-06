@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { Dumbbell, Lightbulb, Stethoscope } from 'lucide-react'
-import { GlassCard } from '../components/GlassCard'
+import { Card } from '../components/Card'
 import { AssessmentProgress } from '../components/Layout'
 import { recommendations } from '../data/mock'
 
@@ -26,8 +26,8 @@ export default function Recommendations() {
           const meta = tierMeta[r.tier]
           const Icon = meta.icon
           return (
-            <GlassCard key={r.id} className="p-5 flex items-center gap-4">
-              <div className="w-11 h-11 rounded-xl bg-white/70 flex items-center justify-center shrink-0">
+            <Card key={r.id} className="p-5 flex items-center gap-4">
+              <div className="w-11 h-11 rounded-xl bg-violet-tint flex items-center justify-center shrink-0">
                 <Icon size={20} className={meta.color} />
               </div>
               <div className="flex-1">
@@ -47,7 +47,7 @@ export default function Recommendations() {
                   Start
                 </button>
               )}
-            </GlassCard>
+            </Card>
           )
         })}
       </div>
@@ -55,7 +55,7 @@ export default function Recommendations() {
       <div className="flex justify-end mt-8">
         <button
           onClick={() => navigate('/dashboard')}
-          className="rounded-xl glass px-6 py-3 text-sm font-semibold text-ink hover:bg-white/70 transition-colors"
+          className="rounded-xl border border-line px-6 py-3 text-sm font-semibold text-ink hover:bg-canvas transition-colors"
         >
           Back to dashboard
         </button>
