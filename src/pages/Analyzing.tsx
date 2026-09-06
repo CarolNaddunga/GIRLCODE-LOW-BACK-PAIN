@@ -36,7 +36,7 @@ export default function Analyzing() {
         // CDN fetch) - fall back to the demo readings above so the flow still works.
       }
       setTimeout(() => {
-        navigate('/assessment/results', { state: { readings } })
+        navigate('/assessment/results', { state: { readings, imageUrl } })
       }, 2600)
     }
     run()
@@ -50,9 +50,13 @@ export default function Analyzing() {
       <AssessmentProgress step={2} />
       <Card className="p-10 flex flex-col items-center text-center">
         <div className="relative w-28 h-36 mb-8 flex items-center justify-center overflow-hidden rounded-2xl border border-line bg-canvas">
-          <div className="absolute inset-x-6 top-3 bottom-3 border-l border-r border-dashed border-violet/25" />
+          {imageUrl ? (
+            <img src={imageUrl} alt="Your uploaded photo being analyzed" className="w-full h-full object-cover" />
+          ) : (
+            <div className="absolute inset-x-6 top-3 bottom-3 border-l border-r border-dashed border-violet/25" />
+          )}
           <div className="absolute left-0 right-0 h-0.5 bg-violet/70 shadow-[0_0_10px_rgba(109,93,251,0.6)] animate-sweep" />
-          <span className="text-[11px] font-medium text-ink-soft">Reading posture</span>
+          {!imageUrl && <span className="text-[11px] font-medium text-ink-soft">Reading posture</span>}
         </div>
         <h1 className="display text-xl font-semibold mb-2">Analyzing your movement</h1>
         <p className="text-sm text-ink-soft mb-8">This takes a few seconds — all done on your device.</p>

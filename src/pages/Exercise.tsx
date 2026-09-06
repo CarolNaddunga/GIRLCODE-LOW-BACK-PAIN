@@ -3,6 +3,25 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Check, RotateCcw } from 'lucide-react'
 import { Card } from '../components/Card'
 import { ImagePlaceholder } from '../components/ImagePlaceholder'
+import pelvicTiltImg from '../images.jpg'
+
+import catCowImg from '../catpose.jpg'         
+import kneeToChestImg from '../knee.jpg' 
+
+const exerciseImages: Record<string, string> = {
+  'Pelvic Tilt': pelvicTiltImg,
+   'Cat-Cow Stretch': catCowImg,
+   'Knee to Chest': kneeToChestImg,
+}
+
+const exerciseInstructions: Record<string, string> = {
+  'Pelvic Tilt':
+    'Lie on your back, knees bent. Gently flatten your lower back against the floor by tightening your stomach muscles, hold 5 seconds, then release.',
+  'Cat-Cow Stretch':
+    'Start on hands and knees. Inhale, drop your belly and lift your chest and tailbone (cow). Exhale, round your spine toward the ceiling, tucking chin and tailbone (cat). Move slowly between the two.',
+  'Knee to Chest':
+    'Lie on your back with both knees bent. Pull one knee toward your chest with both hands, holding gently for a few seconds, keeping your lower back flat on the floor, then switch legs.',
+}
 
 export default function Exercise() {
   const navigate = useNavigate()
@@ -11,6 +30,7 @@ export default function Exercise() {
   const totalSets = 3
   const [set, setSet] = useState(1)
   const [done, setDone] = useState(false)
+  const image = exerciseImages[exerciseName]
 
   function completeSet() {
     if (set < totalSets) {
@@ -28,10 +48,17 @@ export default function Exercise() {
       <Card className="p-10 flex flex-col items-center text-center">
         {!done ? (
           <>
-            <ImagePlaceholder label={`Add ${exerciseName} demo photo`} className="w-48 h-48 mb-8" />
+            {image ? (
+              <img
+                src={image}
+                alt={`Demonstration of the ${exerciseName} exercise`}
+                className="w-48 h-48 mb-8 rounded-2xl object-cover"
+              />
+            ) : (
+              <ImagePlaceholder label={`Add ${exerciseName} demo photo`} className="w-48 h-48 mb-8" />
+            )}
             <p className="text-sm text-ink-soft mb-8 max-w-[380px]">
-              Lie on your back, knees bent. Gently flatten your lower back against the floor by tightening your
-              stomach muscles, hold 5 seconds, then release.
+              {exerciseInstructions[exerciseName] ?? exerciseInstructions['Pelvic Tilt']}
             </p>
             <button
               onClick={completeSet}

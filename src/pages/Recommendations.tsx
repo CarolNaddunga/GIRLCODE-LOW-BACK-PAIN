@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { Dumbbell, Lightbulb, Stethoscope } from 'lucide-react'
 import { Card } from '../components/Card'
+import { ExerciseIllustration } from '../components/ExerciseIllustration'
 import { AssessmentProgress } from '../components/Layout'
 import { recommendations } from '../data/mock'
 
@@ -27,9 +28,13 @@ export default function Recommendations() {
           const Icon = meta.icon
           return (
             <Card key={r.id} className="p-5 flex items-center gap-4">
-              <div className="w-11 h-11 rounded-xl bg-violet-tint flex items-center justify-center shrink-0">
-                <Icon size={20} className={meta.color} />
-              </div>
+              {r.tier === 'exercise' ? (
+                <ExerciseIllustration name={r.title} className="w-14 h-14 rounded-xl bg-violet-tint p-2 shrink-0" />
+              ) : (
+                <div className="w-11 h-11 rounded-xl bg-violet-tint flex items-center justify-center shrink-0">
+                  <Icon size={20} className={meta.color} />
+                </div>
+              )}
               <div className="flex-1">
                 <p className={`text-[11px] font-medium ${meta.color} mb-0.5`}>{meta.label}</p>
                 <p className="font-semibold text-sm">{r.title}</p>
