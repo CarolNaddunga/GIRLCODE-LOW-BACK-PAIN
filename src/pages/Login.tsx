@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import Logo from '../components/Logo'
-import { ImagePlaceholder } from '../components/ImagePlaceholder'
+import backPainImg from '../assets/Back-Pain.jpg'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -45,11 +45,15 @@ export default function Login() {
               Sign in
             </button>
           </form>
-          <p className="text-xs text-ink-soft mt-6">This is a hackathon demo login — any details work.</p>
+          <p className="text-xs text-ink-soft mt-6">Forgot your password? .</p>
         </div>
 
         <div className="hidden md:flex flex-col gap-5 items-center justify-center bg-canvas p-10">
-          <ImagePlaceholder label="Add a lifestyle photo here" className="w-full aspect-[4/5]" />
+          <img
+  src={backPainImg}
+  alt="Illustration highlighting the lower spine, where back pain is felt"
+  className="w-full aspect-[4/5] object-cover rounded-2xl"
+/>
           <p className="text-sm text-ink-soft text-center max-w-[260px]">
             Understand your movement, not just your pain.
           </p>

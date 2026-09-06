@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Card, StatusPill } from '../components/Card'
+import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import RingGauge from '../components/RingGauge'
 import { AssessmentProgress } from '../components/Layout'
 
@@ -13,11 +14,13 @@ function statusFor(metric: 'trunk' | 'hip' | 'sym', v: number): 'good' | 'mild' 
 export default function Results() {
   const navigate = useNavigate()
   const location = useLocation()
-  const readings = (location.state as { readings?: Readings } | null)?.readings ?? {
+  const state = location.state as { readings?: Readings; imageUrl?: string } | null
+  const readings = state?.readings ?? {
     trunkAngleDeg: 14,
     hipAlignmentPct: 92,
     symmetryPct: 88,
   }
+  const imageUrl = state?.imageUrl
 
   const trunkStatus = statusFor('trunk', readings.trunkAngleDeg)
   const hipStatus = statusFor('hip', readings.hipAlignmentPct)
@@ -26,8 +29,21 @@ export default function Results() {
   return (
     <div className="max-w-[880px]">
       <AssessmentProgress step={3} />
-      <h1 className="display text-2xl font-semibold mb-1">Your movement profile</h1>
-      <p className="text-ink-soft text-sm mb-8">Measured from your photo and combined with what you told us.</p>
+      <div className="flex items-start gap-5 mb-8">
+        <div className="flex-1">
+          <h1 className="display text-2xl font-semibold mb-1">Your movement profile</h1>
+          <p className="text-ink-soft text-sm">Measured from your photo and combined with what you told us.</p>
+        </div>
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt="Photo this scan was measured from"
+            className="w-20 h-20 rounded-xl object-cover border border-line shrink-0"
+          />
+        ) : (
+          <ImagePlaceholder label="Scan photo" className="w-20 h-20 shrink-0" compact />
+        )}
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
         <Card className="p-6 flex flex-col items-center text-center">

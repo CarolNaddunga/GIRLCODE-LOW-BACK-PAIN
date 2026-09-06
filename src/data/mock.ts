@@ -38,11 +38,6 @@ export const symptomChips = [
   'Lower back', 'Upper back', 'Left side', 'Right side', 'Radiates to leg',
   'Worse sitting', 'Worse standing', 'Worse bending', 'Morning stiffness', 'Recent lifting',
 ]
-export const exerciseImages: Record<string, string> = {
-  'Cat-Cow Stretch': '/images/exercises/cat-cow.png',
-  'Knee to Chest': '/images/exercises/knee-to-chest.png',
-  'Pelvic Tilt': '/images/exercises/pelvic-tilt.png',
-}
 
 export const recommendations = [
   {
@@ -86,3 +81,14 @@ export const recommendations = [
     difficulty: 'Professional',
   },
 ]
+
+export const exerciseInstructions: Record<string, string> = {
+  'Pelvic Tilt':
+    'Lie on your back, knees bent. Gently flatten your lower back against the floor by tightening your stomach muscles, hold 5 seconds, then release.',
+  'Cat-Cow Stretch':
+    'Start on hands and knees. Inhale, drop your belly and lift your chest and tailbone (cow). Exhale, round your spine toward the ceiling, tucking chin and tailbone (cat). Move slowly between the two.',
+  'Knee to Chest':
+    'Lie on your back with both knees bent. Pull one knee toward your chest with both hands, holding gently for a few seconds, keeping your lower back flat on the floor, then switch legs.',
+  'Desk break routine':
+    'Stand up, place your hands on your lower back, and gently lean backward for a few seconds. Follow with a couple of side-to-side torso stretches before sitting back down.',
+}
